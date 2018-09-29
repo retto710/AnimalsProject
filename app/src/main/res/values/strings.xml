@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AnimalsX</string>
+    <string name="title_activity_create_animals">CreateAnimalsActivity</string>
+
+    <string name="title_activity_logo">LogoActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
