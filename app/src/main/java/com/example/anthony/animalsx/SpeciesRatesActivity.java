@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.anthony.animalsx.Classes.Matriz;
+
 public class SpeciesRatesActivity extends AppCompatActivity {
 
     Button btnSave;
@@ -50,6 +52,21 @@ public class SpeciesRatesActivity extends AppCompatActivity {
                 edtRanges.setText("1");
             }
         });
+        //Matriz
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double[][] d = { { 80, 40, 60 }, { 0.28, 1.2, 0.5 }, { 0.51, 0.81, 0} };
+                Matriz D = new Matriz(d);
+                double[][] c = { { 80, 0, 0 }, { 40, 0, 0}, { 60, 0, 0} };
+                Matriz C = new Matriz(c);
+                D=D.LeslieMatriz(D);
+                D.show();
+                Matriz E = D.times(C);
+                //E.show();
+            }
+        });
+        //Rangos
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
