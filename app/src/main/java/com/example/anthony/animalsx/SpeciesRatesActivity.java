@@ -1,6 +1,5 @@
 package com.example.anthony.animalsx;
 
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,12 +57,13 @@ public class SpeciesRatesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 double[][] d = { { 80, 40, 60 }, { 0.28, 1.2, 0.5 }, { 0.51, 0.81, 0} };
                 Matriz D = new Matriz(d);
-                double[][] c = { { 80, 0, 0 }, { 40, 0, 0}, { 60, 0, 0} };
-                Matriz C = new Matriz(c);
+                //Crea la segunda matriz con la cantidad de muestras
+                Matriz C=D.transpose();
+                //Genera la matriz Leslie
                 D=D.LeslieMatriz(D);
-                D.show();
-                Matriz E = D.times(C);
-                //E.show();
+                //Multiplica las matrices
+                Matriz E = D.Multiplicacion(C);
+                E.show();
             }
         });
         //Rangos

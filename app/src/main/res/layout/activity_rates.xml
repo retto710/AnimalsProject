@@ -5,5 +5,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RatesActivity">
-
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rango"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
+        android:id="@+id/txtRangoActual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        app:layout_constraintLeft_toRightOf="@id/txt1"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
+        android:id="@id/txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Numero de animales"
+        app:layout_constraintTop_toBottomOf="@id/txt1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <EditText
+        android:id="@+id/edtNuAni"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el numero de animales"
+        app:layout_constraintTop_toBottomOf="@id/txt2"
+        android:inputType="number"
+        />
+    <TextView
+        android:id="@id/txt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Numero de animales"
+        app:layout_constraintTop_toBottomOf="@id/edtNuAni"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <EditText
+        android:id="@+id/edtNatRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el pocentaje de natalidad"
+        app:layout_constraintTop_toBottomOf="@id/txt3"
+        android:inputType="numberDecimal"
+        />
+    <TextView
+        android:id="@id/txt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Numero de animales"
+        app:layout_constraintTop_toBottomOf="@id/edtNatRate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <EditText
+        android:id="@+id/edtMortRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese el porcentaje de mortalidad"
+        app:layout_constraintTop_toBottomOf="@id/txt4"
+        android:inputType="numberDecimal"
+        />
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        app:layout_constraintTop_toBottomOf="@id/edtMortRate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 </android.support.constraint.ConstraintLayout>

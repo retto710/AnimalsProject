@@ -12,5 +12,6 @@ public class RatesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
         matriz.setnColumnas(3);
+
     }
 }
