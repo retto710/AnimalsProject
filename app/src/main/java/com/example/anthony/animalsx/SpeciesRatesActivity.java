@@ -1,5 +1,6 @@
 package com.example.anthony.animalsx;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,6 +65,8 @@ public class SpeciesRatesActivity extends AppCompatActivity {
                 //Multiplica las matrices
                 Matriz E = D.Multiplicacion(C);
                 E.show();
+                Intent intent= new Intent(getApplicationContext(),RatesActivity.class);
+                startActivity(intent);
             }
         });
         //Rangos

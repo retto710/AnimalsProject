@@ -20,7 +20,7 @@ public class Matriz {
         setData(new double[nfilas][nColumnas]);
     }
 
- 
+
     public Matriz(double [][]data){
         setNfilas(data.length);
         setnColumnas(data[0].length);
@@ -132,6 +132,17 @@ public class Matriz {
         }
     }
 
+    public String toString()
+    {
+        String text="";
+
+                for (int i=0;i<nfilas;i++)
+                {
+
+                    text=text+String.valueOf(data[i][0])+"\n" ;
+                }
+        return text;
+    }
     public Matriz transpose() {
         Matriz A = new Matriz(nColumnas, nfilas);
         for (int i = 0; i < nColumnas; i++)
