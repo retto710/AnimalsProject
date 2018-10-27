@@ -24,7 +24,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SpeciesRatesActivity" />
-        <activity android:name=".RatesActivity"></activity>
+        <activity android:name=".RatesActivity" />
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".SpecificAnimalPoblationActivity"></activity>
     </application>
 
 </manifest>

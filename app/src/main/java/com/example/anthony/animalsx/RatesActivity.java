@@ -1,5 +1,6 @@
 package com.example.anthony.animalsx;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,13 @@ public class RatesActivity extends AppCompatActivity {
         double[][] d = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0} };
         matriz=new Matriz(d);
         matriz.show();
+        Button btn = findViewById(R.id.tryit);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         btnSave=findViewById(R.id.btnSave);
         btnGuardar=findViewById(R.id.btnNext);
         txtAnswer=findViewById(R.id.txtRespuesta);
@@ -59,6 +67,9 @@ public class RatesActivity extends AppCompatActivity {
                     Matriz E = matriz.Multiplicacion(C);
                     E.show();
                     txtAnswer.setText(E.toString());
+                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                    intent.putExtra("respuesta",E.toString());
+                    startActivity(intent);
             }
             }
         });

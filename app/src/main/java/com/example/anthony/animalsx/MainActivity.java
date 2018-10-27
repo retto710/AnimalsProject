@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout my_layout;
     AnimationDrawable animationDrawable;
     CircleImageView imgMouse;
+    CircleImageView imgAny;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         //Inicializar variables
         my_layout=findViewById(R.id.my_layout);
         imgMouse=findViewById(R.id.mouse);
+        imgAny= findViewById(R.id.any);
         //Animacion de cambio de color
         animationDrawable=(AnimationDrawable) my_layout.getBackground() ;
         animationDrawable.setEnterFadeDuration(2000);
@@ -35,7 +37,16 @@ public class MainActivity extends AppCompatActivity {
         imgMouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SpeciesRatesActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SpecificAnimalPoblationActivity.class);
+                intent.putExtra("name","rata");
+                startActivity(intent);
+            }
+        });
+        imgAny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SpecificAnimalPoblationActivity.class);
+                intent.putExtra("name","example");
                 startActivity(intent);
             }
         });
