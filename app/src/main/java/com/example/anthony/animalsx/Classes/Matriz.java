@@ -70,17 +70,22 @@ public class Matriz implements Serializable {
 
     //Multiplicacion de matrices
     public Matriz Multiplicacion(Matriz B) {
+        double b=0;
         Matriz A = this;
-        A.show();
-        Log.d("Matriz leslie","e");
-        B.show();
-        Log.d("Matriz transp","e");
         if (A.getnColumnas() != B.getNfilas()) throw new RuntimeException("No se puede multiplicar.");
-        Matriz C = new Matriz(A.getnColumnas(), B.getNfilas());
-        for (int i = 0; i < C.getnColumnas(); i++)
-            for (int j = 0; j < C.getNfilas(); j++)
-                for (int k = 0; k < A.getNfilas(); k++)
-                    C.getData()[i][j] += (A.getData()[i][k] * B.getData()[k][j]);
+        Matriz C = new Matriz(A.getnColumnas(), B.getnColumnas());
+        Log.d("nColC",String.valueOf(C.getnColumnas()));
+        Log.d("NfilasC",String.valueOf(C.getNfilas()));
+        for (int i = 0; i < C.getNfilas(); i++) {
+            for (int j = 0; j < C.getnColumnas(); j++) {
+                b = 0;
+                for (int k = 0; k < A.getnColumnas(); k++) {
+                    b += (A.getData()[i][k] * B.getData()[k][j]);
+                }
+                C.setData(i, j, b);
+                C.show();
+            }
+        }
         return C;
     }
 

@@ -23,16 +23,16 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
     TextView txtAnswer;
     EditText edtPoblation;
     Integer contador;
-    Matriz matriz= new Matriz();
+    Matriz matriz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specific_animal_poblation);
         //Especifico el animal
         String animalName = getIntent().getStringExtra("name");
-        Log.d("d",animalName);
+        Log.d("nombre animal",animalName);
         String imageName="";
-
+        matriz= new Matriz();
         //Inicializo con los valores predeterminados
         switch (animalName){
             case "rata": {
@@ -41,14 +41,14 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                 matriz=new Matriz(rata.getMaxAge());
                 matriz.BirthRate(rata.getAnimalRate());
                 matriz.MortalRate(rata.getAnimalRate());
-            }
+            }break;
             case "example": {
                 Example example= new Example();
                 imageName= example.getSrcName();
                 matriz=new Matriz(example.getMaxAge());
                 matriz.BirthRate(example.getAnimalRate());
                 matriz.MortalRate(example.getAnimalRate());
-            }
+            }break;
         }
         //Nombre de la imagen del animal
         int resID = getResources().getIdentifier(imageName, "mipmap", getPackageName());
@@ -59,6 +59,8 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
         txtAnswer=findViewById(R.id.txtRespuesta);
         image= findViewById(R.id.imgAnimal);
         contador=0;
+        Log.d("COlumnas de animal",String.valueOf(matriz.getnColumnas()));
+
         //Asigno la imagen del animal
         image.setImageResource(resID );
         //Relleno la poblacion
@@ -76,7 +78,7 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                     Log.d("numeros",String.valueOf(matriz.getData(0,contador-1)));
                     if (contador==matriz.getnColumnas())
                     {
-                        matriz.show();
+                        //matriz.show();
                         btn.setText("Calcular");
                         edtPoblation.setEnabled(false);
                     }
