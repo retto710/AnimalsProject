@@ -186,6 +186,17 @@ public class Matriz implements Serializable {
                 }
         return text;
     }
+    public String toString2()
+    {
+        String text="";
+
+        for (int i=0;i<nfilas;i++)
+        {
+
+            text=text+"Rango "+ String.valueOf(i+1)+ ": "+ String.valueOf(Math.round(data[i][0]))+"\n" ;
+        }
+        return text;
+    }
     public Matriz transpose() {
         Matriz A = new Matriz(this.getnColumnas(), this.getNfilas());
         for (int i = 0; i < this.getNfilas(); i++)
@@ -238,6 +249,14 @@ public class Matriz implements Serializable {
         }
     }
 
+    public Matriz UltInteracciones(Matriz Pobl,int nInt)
+    {
+        this.nInteracciones(nInt);
+        Matriz base= new Matriz(this.data);
+        Matriz potencia = new Matriz(base.Potencia(nInt));
+        Matriz aux = new Matriz(potencia.Multiplicacion(Pobl));
+        return aux;
+    }
     public int getnIter() {
         return nIter;
     }

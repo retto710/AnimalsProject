@@ -120,12 +120,13 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                     matriz= new Matriz(matriz.LeslieMatriz(matriz).getData());
                     //Log.d("termina leslie","end");
                     //Multiplica las matrices
-                    Matriz E = new Matriz(matriz.Multiplicacion(C).getData());
+                    Matriz E = new Matriz(matriz.UltInteracciones(C,Integer.valueOf(edtPoblation.getText().toString())).getData());
                     Log.d("termina mult","end");
                     //txtAnswer.setText(E.toString());
                     matriz.Interacciones(C,Integer.parseInt(edtPoblation.getText().toString()));
                     Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
                     intent.putExtra("respuesta",matriz.getnAnimales());
+                    intent.putExtra("ultimo",E.toString2());
                     startActivity(intent);
                     btn.setEnabled(false);
                 }

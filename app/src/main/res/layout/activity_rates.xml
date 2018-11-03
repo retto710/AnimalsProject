@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         />
     <TextView
-        android:id="@id/txt2"
+        android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Numero de animales"
@@ -38,10 +38,10 @@
         android:inputType="number"
         />
     <TextView
-        android:id="@id/txt3"
+        android:id="@+id/txt3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Numero de animales"
+        android:text="Porcentaje de Natalidad"
         app:layout_constraintTop_toBottomOf="@id/edtNuAni"
         app:layout_constraintLeft_toLeftOf="parent"
         />
@@ -54,10 +54,10 @@
         android:inputType="numberDecimal"
         />
     <TextView
-        android:id="@id/txt4"
+        android:id="@+id/txt4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Numero de animales"
+        android:text="Porcentaje de Natalidad"
         app:layout_constraintTop_toBottomOf="@id/edtNatRate"
         app:layout_constraintLeft_toLeftOf="parent"
         />
@@ -77,30 +77,25 @@
         app:layout_constraintTop_toBottomOf="@id/edtMortRate"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnCal"
-        />
-    <Button
-        android:id="@+id/btnCal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calcular"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/btnSave"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
     <TextView
-        android:id="@+id/txtRespuesta"
+        android:id="@+id/txtNIt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RESPUESTA"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Ingrese cantidad de interacciones"
+        app:layout_constraintTop_toBottomOf="@id/edtMortRate"
+        android:enabled="false"
         />
-    <Button
-        android:id="@+id/tryit"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/edtIt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:maxLength="1"
+        android:inputType="number"
+        android:text="1"
+        app:layout_constraintTop_toBottomOf="@id/txtNIt"
+        android:enabled="false"
         />
 </android.support.constraint.ConstraintLayout>

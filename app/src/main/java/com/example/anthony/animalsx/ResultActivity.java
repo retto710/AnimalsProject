@@ -29,6 +29,7 @@ public class ResultActivity extends AppCompatActivity {
     private BarChart barChart;
     private String[] interaccion;
     private Button btnAgain;
+    private TextView textView;
     private  int[]sale = new int[]{25,80,3};
     private int[] color = new int[]{Color.BLUE,Color.RED,Color.YELLOW,Color.MAGENTA,Color.BLACK,Color.LTGRAY,Color.GREEN,Color.DKGRAY,Color.CYAN,Color.GRAY};
     @Override
@@ -38,6 +39,7 @@ public class ResultActivity extends AppCompatActivity {
         //pieChart= findViewById(R.id.Piechart);
         barChart=findViewById(R.id.barChart);
         btnAgain=findViewById(R.id.btnAgain);
+        textView=findViewById(R.id.txtUltimaInteraccion);
         btnAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +50,7 @@ public class ResultActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         sale=  extras.getIntArray("respuesta");
+        textView.setText(extras.getString("ultimo"));
         interaccion=new String[sale.length];
         for (int i=0;i<sale.length;i++)
         {

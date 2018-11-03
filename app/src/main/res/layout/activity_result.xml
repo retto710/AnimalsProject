@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResultActivity">
+    <TextView
+        android:id="@+id/txtUltimaInteraccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="respuesta"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnAgain"
+        />
     <Button
         android:id="@+id/btnAgain"
         android:layout_width="wrap_content"
@@ -12,7 +22,7 @@
         android:text="Otra vez"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtUltimaInteraccion"
         app:layout_constraintBottom_toTopOf="@id/barChart"
         />
     <com.github.mikephil.charting.charts.BarChart
