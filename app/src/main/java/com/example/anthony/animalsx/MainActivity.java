@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     AnimationDrawable animationDrawable;
     CircleImageView imgMouse;
     CircleImageView imgAny;
+    CircleImageView imgDog;
+    CircleImageView imgCaterpillar;
+    CircleImageView imgChipmunk;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         my_layout=findViewById(R.id.my_layout);
         imgMouse=findViewById(R.id.mouse);
         imgAny= findViewById(R.id.any);
+        imgDog=findViewById(R.id.dog);
+        imgCaterpillar=findViewById(R.id.caterpillar);
+        imgChipmunk= findViewById(R.id.chipmunk);
         //Animacion de cambio de color
         animationDrawable=(AnimationDrawable) my_layout.getBackground() ;
         animationDrawable.setEnterFadeDuration(2000);
@@ -45,11 +51,33 @@ public class MainActivity extends AppCompatActivity {
         imgAny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SpecificAnimalPoblationActivity.class);
-                intent.putExtra("name","example");
+                Intent intent = new Intent(getApplicationContext(), SpeciesRatesActivity.class);
                 startActivity(intent);
             }
         });
-
+        imgDog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SpecificAnimalPoblationActivity.class);
+                intent.putExtra("name","perro");
+                startActivity(intent);
+            }
+        });
+        imgCaterpillar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SpecificAnimalPoblationActivity.class);
+                intent.putExtra("name","oruga");
+                startActivity(intent);
+            }
+        });
+        imgChipmunk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SpecificAnimalPoblationActivity.class);
+                intent.putExtra("name","ardilla");
+                startActivity(intent);
+            }
+        });
     }
 }

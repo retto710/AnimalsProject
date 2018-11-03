@@ -3,6 +3,7 @@ package com.example.anthony.animalsx;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.anthony.animalsx.Classes.Anim.Ardilla;
 import com.example.anthony.animalsx.Classes.Anim.Example;
+import com.example.anthony.animalsx.Classes.Anim.Oruga;
+import com.example.anthony.animalsx.Classes.Anim.Perro;
 import com.example.anthony.animalsx.Classes.Anim.Rata;
 import com.example.anthony.animalsx.Classes.Matriz;
 
@@ -21,6 +25,7 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
     Button btn;
     TextView txtVariable;
     TextView txtAnswer;
+    TextView textView1;
     EditText edtPoblation;
     Integer contador;
     Matriz matriz;
@@ -49,6 +54,27 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                 matriz.BirthRate(example.getAnimalRate());
                 matriz.MortalRate(example.getAnimalRate());
             }break;
+            case "perro": {
+                Perro perro= new Perro();
+                imageName= perro.getSrcName();
+                matriz=new Matriz(perro.getMaxAge());
+                matriz.BirthRate(perro.getAnimalRate());
+                matriz.MortalRate(perro.getAnimalRate());
+            }break;
+            case "oruga": {
+                Oruga oruga= new Oruga();
+                imageName= oruga.getSrcName();
+                matriz=new Matriz(oruga.getMaxAge());
+                matriz.BirthRate(oruga.getAnimalRate());
+                matriz.MortalRate(oruga.getAnimalRate());
+            }break;
+            case "ardilla": {
+                Ardilla ardilla= new Ardilla();
+                imageName= ardilla.getSrcName();
+                matriz=new Matriz(ardilla.getMaxAge());
+                matriz.BirthRate(ardilla.getAnimalRate());
+                matriz.MortalRate(ardilla.getAnimalRate());
+            }break;
         }
         //Nombre de la imagen del animal
         int resID = getResources().getIdentifier(imageName, "mipmap", getPackageName());
@@ -58,6 +84,7 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
         txtVariable = findViewById(R.id.txtVariable);
         txtAnswer=findViewById(R.id.txtRespuesta);
         image= findViewById(R.id.imgAnimal);
+        textView1=findViewById(R.id.txt1);
         contador=0;
         Log.d("COlumnas de animal",String.valueOf(matriz.getnColumnas()));
 
@@ -80,7 +107,10 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                     {
                         //matriz.show();
                         btn.setText("Calcular");
-                        edtPoblation.setEnabled(false);
+                        textView1.setText("Ingrese cantidad de interacciones");
+                        int maxLength = 1;
+                        edtPoblation.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+
                     }
                 }
                 else
@@ -92,10 +122,11 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                     //Multiplica las matrices
                     Matriz E = new Matriz(matriz.Multiplicacion(C).getData());
                     Log.d("termina mult","end");
-                    txtAnswer.setText(E.toString());
-                    //Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
-                    //intent.putExtra("respuesta",E.toString());
-                    //startActivity(intent);
+                    //txtAnswer.setText(E.toString());
+                    matriz.Interacciones(C,Integer.parseInt(edtPoblation.getText().toString()));
+                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                    intent.putExtra("respuesta",matriz.getnAnimales());
+                    startActivity(intent);
                     btn.setEnabled(false);
                 }
             }

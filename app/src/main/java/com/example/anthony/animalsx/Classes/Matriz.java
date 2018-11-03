@@ -4,13 +4,12 @@ import android.util.Log;
 
 import java.io.Serializable;
 
-import javax.xml.transform.Result;
-
 public class Matriz implements Serializable {
     private int nfilas=3;
     private int nColumnas;
     private double[][] data;
-
+    private int[] nAnimales;
+    private int nIter;
     public Matriz()
     {
     }
@@ -57,7 +56,7 @@ public class Matriz implements Serializable {
     private Matriz(Matriz A){this(A.getData());}
 
     //Potencia de la matriz
-    public Matriz timesM(int a)
+    public Matriz Potencia(int a)
     {
         Matriz A = this;
         Matriz result=this;
@@ -199,5 +198,51 @@ public class Matriz implements Serializable {
             }
 
         return A;
+    }
+
+    public void nInteracciones(int i)
+    {
+        nAnimales= new int[i+1];
+    }
+
+    public int[] getnAnimales() {
+        return nAnimales;
+    }
+
+    public void setnAnimales(int[] nAnimales) {
+        this.nAnimales = nAnimales;
+    }
+
+    public void Interacciones(Matriz Pobl,int nInt)
+    {
+        this.nInteracciones(nInt);
+        Matriz base= new Matriz(this.data);
+        //Interaccion inicial
+        for (int j=0;j<Pobl.nfilas;j++)
+        {
+            this.nAnimales[0]+=Math.round(Pobl.getData(j,0));
+        }
+        Log.d("Interaccion "+String.valueOf(0),String.valueOf(this.nAnimales[0]));
+        //Interacciones
+        for (int i=0;i<nInt;i++)
+        {
+            Matriz potencia = new Matriz(base.Potencia(i+1));
+            potencia.show();
+            Matriz aux = new Matriz(potencia.Multiplicacion(Pobl));
+            aux.show();
+            for (int j=0;j<aux.nColumnas;j++)
+            {
+                this.nAnimales[i+1]+=Math.round(aux.getData(j,0));
+            }
+            Log.d("Interaccion "+String.valueOf(i+1),String.valueOf(this.nAnimales[i+1]));
+        }
+    }
+
+    public int getnIter() {
+        return nIter;
+    }
+
+    public void setnIter(int nIter) {
+        this.nIter = nIter;
     }
 }

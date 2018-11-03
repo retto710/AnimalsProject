@@ -2,14 +2,14 @@ package com.example.anthony.animalsx.Classes.Anim;
 
 import com.example.anthony.animalsx.Classes.Matriz;
 
-public class Ardilla {
-    private String name= "ardilla";
-    private Integer maxAge = 6;
-    private double[][] rates = { { 0,0,0.8,0.9,0.3,0 }, { 0.8,0.9,0.9,0.6,0.4,0} };
+public class Perro {
+    private String name= "perro";
+    private Integer maxAge = 10;
+    private double[][] rates = { { 0, 125.8, 125.8,125.8,125.8,125.8,125.8,125.8,125.8,125.8}, { 4.25, 8, 4.25, 8,4.25, 8,4.25, 8,4.25, 8} };
     private Matriz animalRate;
-    private String srcName= "chipmunk";
+    private String srcName= "dog";
 
-    public Ardilla() {
+    public Perro() {
         this.setAnimalRate(new Matriz(rates));
     }
 

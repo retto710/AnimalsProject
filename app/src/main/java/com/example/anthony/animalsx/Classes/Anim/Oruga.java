@@ -4,10 +4,10 @@ import com.example.anthony.animalsx.Classes.Matriz;
 
 public class Oruga {
     private String name= "rata";
-    private Integer maxAge = 3;
-    private double[][] rates = { { 0.28, 1.2, 0.5 }, { 0.51, 0.81, 0} };
+    private Integer maxAge = 9;
+    private double[][] rates = { { 0,0,0,0,0,0,0,0,0 }, { 0.850,0.824,0.5,0.250,0.799,0.749,0.970,0.799,0} };
     private Matriz animalRate;
-    private String srcName= "mouse";
+    private String srcName= "caterpillar";
 
     public Oruga() {
         this.setAnimalRate(new Matriz(rates));

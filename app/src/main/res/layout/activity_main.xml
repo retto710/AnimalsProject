@@ -13,28 +13,28 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/dog"
-        app:layout_constraintRight_toLeftOf="@id/cat"
+        app:layout_constraintRight_toLeftOf="@id/chipmunk"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/owl"
+        app:layout_constraintBottom_toTopOf="@id/caterpillar"
         app:layout_constraintLeft_toLeftOf="parent"
         />
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/cat"
+        android:id="@+id/chipmunk"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@mipmap/cat"
+        android:src="@mipmap/chipmunk"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/owl"
+        app:layout_constraintBottom_toTopOf="@id/caterpillar"
         app:layout_constraintLeft_toRightOf="@id/dog"
         />
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/owl"
+        android:id="@+id/caterpillar"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@mipmap/owl"
+        android:src="@mipmap/caterpillar"
         app:layout_constraintRight_toLeftOf="@id/mouse"
-        app:layout_constraintTop_toBottomOf="@id/cat"
+        app:layout_constraintTop_toBottomOf="@id/chipmunk"
         app:layout_constraintBottom_toTopOf="@id/any"
         app:layout_constraintLeft_toLeftOf="parent"
         />
@@ -46,7 +46,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dog"
         app:layout_constraintBottom_toTopOf="@id/any"
-        app:layout_constraintLeft_toRightOf="@id/owl"
+        app:layout_constraintLeft_toRightOf="@id/caterpillar"
         />
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/any"
