@@ -30,12 +30,15 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
     Integer contador;
     Matriz matriz;
     Matriz matrizInicial;
+    int tieneMatriz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specific_animal_poblation);
         //Especifico el animal
-        String animalName = getIntent().getStringExtra("name");
+        Bundle extras = getIntent().getExtras();
+        final String animalName = extras.getString("name");
+
         Log.d("nombre animal",animalName);
         String imageName="";
         matriz= new Matriz();
@@ -88,7 +91,13 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
         textView1=findViewById(R.id.txt1);
         contador=0;
         Log.d("COlumnas de animal",String.valueOf(matriz.getnColumnas()));
-
+        if (getIntent().hasExtra("matrizinicial"))
+        {
+            tieneMatriz=1;
+            matrizInicial = new Matriz(((Matriz)extras.getSerializable("matrizinicial")).getData());
+            edtPoblation.setText(String.valueOf((int)matrizInicial.getData(0,0)));
+        }
+        else tieneMatriz=0;
         //Asigno la imagen del animal
         image.setImageResource(resID );
         //Relleno la poblacion
@@ -102,6 +111,10 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                     contador++;
                     //Limpio valores
                     edtPoblation.setText("");
+                    if (tieneMatriz==1&&contador!=matrizInicial.getnColumnas())
+                    {
+                        edtPoblation.setText(String.valueOf((int)matrizInicial.getData(0,contador)));
+                    }
                     txtVariable.setText(String.valueOf(contador+1));
                     Log.d("numeros",String.valueOf(matriz.getData(0,contador-1)));
                     if (contador==matriz.getnColumnas())
@@ -131,10 +144,25 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                     intent.putExtra("respuesta",matriz.getnAnimales());
                     intent.putExtra("ultimo",E.toString2());
                     intent.putExtra("matrizinicial",matrizInicial);
+                    intent.putExtra("name",animalName);
+                    intent.putExtra("tipo","especifico");
                     startActivity(intent);
                     btn.setEnabled(false);
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        if (contador>0)
+        {
+            contador--;
+            edtPoblation.setText(String.valueOf((int)matriz.getData(0,contador)));
+            txtVariable.setText(String.valueOf(contador+1));
+        }
+        else {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
