@@ -2,12 +2,17 @@ package com.example.anthony.animalsx;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.RectF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.anthony.animalsx.Classes.Matriz;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -19,25 +24,48 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.DataSet;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.MPPointF;
 
 import java.util.ArrayList;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity implements OnChartValueSelectedListener {
     private PieChart pieChart;
     private BarChart barChart;
     private String[] interaccion;
     private Button btnAgain;
     private TextView textView;
+    private Matriz matrizInicial;
     private  int[]sale = new int[]{25,80,3};
     private int[] color = new int[]{Color.BLUE,Color.RED,Color.YELLOW,Color.MAGENTA,Color.BLACK,Color.LTGRAY,Color.GREEN,Color.DKGRAY,Color.CYAN,Color.GRAY};
+    private final RectF onValueSelectedRectF = new RectF();
+
+    //Barra
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        if (e == null)
+            return;
+        Matriz E= new Matriz(matrizInicial.CalcularInteraccion(matrizInicial,(int)(e.getX())).getData());
+        textView.setText(E.toString2());
+    }
+
+    @Override
+    public void onNothingSelected() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         //pieChart= findViewById(R.id.Piechart);
         barChart=findViewById(R.id.barChart);
+        barChart.setTouchEnabled(true);
+        barChart.setOnChartValueSelectedListener(this);
         btnAgain=findViewById(R.id.btnAgain);
         textView=findViewById(R.id.txtUltimaInteraccion);
         btnAgain.setOnClickListener(new View.OnClickListener() {
@@ -51,15 +79,16 @@ public class ResultActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         sale=  extras.getIntArray("respuesta");
         textView.setText(extras.getString("ultimo"));
+        //Traigo la matriz inicial
+        matrizInicial= new Matriz(((Matriz) extras.getSerializable("matrizinicial")).getData());
+
         interaccion=new String[sale.length];
         for (int i=0;i<sale.length;i++)
         {
             interaccion[i]=String.valueOf(i);
         }
         createCharts();
-        //Intent intent = getIntent();
-        //String YourtransferredData = intent.getExtras().getString("respuesta");
-        //textView.setText(YourtransferredData);
+
     }
 
     private Chart getSameChar(Chart chart, String description, int textcolor, int backgroundcolor,int time){
@@ -89,13 +118,6 @@ public class ResultActivity extends AppCompatActivity {
         ArrayList<BarEntry> entries= new ArrayList<>();
         for (int i=0;i<sale.length;i++){
             entries.add(new BarEntry(i,sale[i]));
-        }
-        return entries;
-    }
-    private ArrayList<PieEntry> getPieEntries(){
-        ArrayList<PieEntry> entries= new ArrayList<>();
-        for (int i=0;i<sale.length;i++){
-            entries.add(new PieEntry(i,sale[i]));
         }
         return entries;
     }
