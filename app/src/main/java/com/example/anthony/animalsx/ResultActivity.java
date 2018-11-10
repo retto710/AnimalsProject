@@ -169,4 +169,21 @@ public class ResultActivity extends AppCompatActivity implements OnChartValueSel
 
 
     }
+    //Boton atras
+    @Override
+    public void onBackPressed() {
+        // your code.
+        //Switch dependiendo del animal
+        int numeroCol = matrizInicial.getnColumnas();
+        switch (numeroCol){
+            case 3:{
+                //Rata
+                Intent intent = new Intent(this,SpecificAnimalPoblationActivity.class);
+                intent.putExtra("name","rata");
+                intent.putExtra("matrizinicial",matrizInicial);
+                startActivity(intent);
+            }
+
+        }
+    }
 }

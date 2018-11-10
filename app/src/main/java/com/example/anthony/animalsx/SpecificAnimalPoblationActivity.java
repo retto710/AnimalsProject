@@ -29,6 +29,7 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
     EditText edtPoblation;
     Integer contador;
     Matriz matriz;
+    Matriz matrizInicial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +116,8 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    //Guarda la matriz inciial
+                    matrizInicial= new Matriz(matriz.getData());
                     Matriz C= new Matriz(matriz.transpose().getData());
                     //Genera la matriz Leslie
                     matriz= new Matriz(matriz.LeslieMatriz(matriz).getData());
@@ -127,6 +130,7 @@ public class SpecificAnimalPoblationActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
                     intent.putExtra("respuesta",matriz.getnAnimales());
                     intent.putExtra("ultimo",E.toString2());
+                    intent.putExtra("matrizinicial",matrizInicial);
                     startActivity(intent);
                     btn.setEnabled(false);
                 }

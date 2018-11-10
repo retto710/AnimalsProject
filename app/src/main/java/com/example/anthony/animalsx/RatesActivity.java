@@ -22,6 +22,7 @@ public class RatesActivity extends AppCompatActivity {
     Button btnSave;
     Button btnGuardar;
     Integer nRangos;
+    Matriz matrizInicial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,8 @@ public class RatesActivity extends AppCompatActivity {
                 }
                 if (nuevorango>nRangos)
                 {
+                    //Guarda la matriz inciial
+                    matrizInicial= new Matriz(matriz.getData());
                     Matriz C= new Matriz(matriz.transpose().getData());
                     //Genera la matriz Leslie
                     matriz= new Matriz(matriz.LeslieMatriz(matriz).getData());
@@ -71,6 +74,7 @@ public class RatesActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
                     intent.putExtra("respuesta",matriz.getnAnimales());
                     intent.putExtra("ultimo",E.toString2());
+                    intent.putExtra("matrizinicial",matrizInicial);
                     startActivity(intent);
             }
             }

@@ -264,4 +264,21 @@ public class Matriz implements Serializable {
     public void setnIter(int nIter) {
         this.nIter = nIter;
     }
+
+    public Matriz CalcularInteraccion(Matriz matriz,int nIter){
+        Matriz aux= new Matriz(matriz.getData());
+        Matriz pobl= new Matriz(aux.transpose().getData());
+        if (nIter>0)
+        {
+            //Genera la matriz Leslie
+            aux= new Matriz(matriz.LeslieMatriz(matriz).getData());
+            //Multiplica las matrices
+            Matriz E = new Matriz(aux.UltInteracciones(pobl,nIter));
+            return E;
+        }
+        else
+        {
+            return pobl;
+        }
+    }
 }
