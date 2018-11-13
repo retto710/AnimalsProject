@@ -34,12 +34,13 @@ import com.github.mikephil.charting.utils.MPPointF;
 import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity implements OnChartValueSelectedListener {
-    private PieChart pieChart;
     private BarChart barChart;
     private String[] interaccion;
     private Button btnAgain;
     private TextView textView;
     private Matriz matrizInicial;
+    private String animalName;
+    private String tipo;
     private  int[]sale = new int[]{25,80,3};
     private int[] color = new int[]{Color.BLUE,Color.RED,Color.YELLOW,Color.MAGENTA,Color.BLACK,Color.LTGRAY,Color.GREEN,Color.DKGRAY,Color.CYAN,Color.GRAY};
     private final RectF onValueSelectedRectF = new RectF();
@@ -79,6 +80,8 @@ public class ResultActivity extends AppCompatActivity implements OnChartValueSel
         Bundle extras = getIntent().getExtras();
         sale=  extras.getIntArray("respuesta");
         textView.setText(extras.getString("ultimo"));
+        animalName=extras.getString("name");
+        tipo=extras.getString("tipo");
         //Traigo la matriz inicial
         matrizInicial= new Matriz(((Matriz) extras.getSerializable("matrizinicial")).getData());
 
@@ -174,12 +177,18 @@ public class ResultActivity extends AppCompatActivity implements OnChartValueSel
     public void onBackPressed() {
         // your code.
         //Switch dependiendo del animal
-        int numeroCol = matrizInicial.getnColumnas();
-        switch (numeroCol){
-            case 3:{
+
+        switch (tipo){
+            case "especifico":{
                 //Rata
                 Intent intent = new Intent(this,SpecificAnimalPoblationActivity.class);
-                intent.putExtra("name","rata");
+                intent.putExtra("name",animalName);
+                intent.putExtra("matrizinicial",matrizInicial);
+                startActivity(intent);
+            }
+            case "cualquiera":{
+                Intent intent = new Intent(this,RatesActivity.class);
+                intent.putExtra("rango",String.valueOf((int)matrizInicial.getnColumnas()));
                 intent.putExtra("matrizinicial",matrizInicial);
                 startActivity(intent);
             }

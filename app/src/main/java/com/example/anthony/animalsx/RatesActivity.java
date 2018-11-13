@@ -23,22 +23,37 @@ public class RatesActivity extends AppCompatActivity {
     Button btnGuardar;
     Integer nRangos;
     Matriz matrizInicial;
+    int tieneMatriz;
+    int ultimo=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rates);
-        nRangos= Integer.parseInt(getIntent().getStringExtra("rango"));
+        Bundle extras = getIntent().getExtras();
+        nRangos= Integer.parseInt(extras.getString ("rango"));
         matriz=new Matriz(nRangos);
         matriz.show();
         btnSave=findViewById(R.id.btnSave);
+        txtActRange=findViewById(R.id.txtRangoActual);
+        editMorRate=findViewById(R.id.edtMortRate);
+        editNatRate=findViewById(R.id.edtNatRate);
+        editNumAnim=findViewById(R.id.edtNuAni);
+        editText= findViewById(R.id.edtIt);
+        //TRAER DATOS
+        if (getIntent().hasExtra("matrizinicial"))
+        {
+            tieneMatriz=1;
+            matrizInicial = new Matriz(((Matriz)extras.getSerializable("matrizinicial")).getData());
+            txtActRange.setText("1");
+            editNumAnim.setText(String.valueOf((int)matrizInicial.getData(0,0)));
+            editNatRate.setText(String.valueOf(matrizInicial.getData(1,0)));
+            editMorRate.setText(String.valueOf(matrizInicial.getData(2,0)));
+        }
+        else tieneMatriz=0;
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtActRange=findViewById(R.id.txtRangoActual);
-                editMorRate=findViewById(R.id.edtMortRate);
-                editNatRate=findViewById(R.id.edtNatRate);
-                editNumAnim=findViewById(R.id.edtNuAni);
-                editText= findViewById(R.id.edtIt);
+
                 //Integer numberRanges = Integer.parseInt(edtRanges.getText().toString());
                 Integer rangoActual=Integer.parseInt(txtActRange.getText().toString());
                 Integer NumeroAnimales=Integer.parseInt(editNumAnim.getText().toString());
@@ -52,6 +67,13 @@ public class RatesActivity extends AppCompatActivity {
                 editNatRate.setText("");
                 editNumAnim.setText("");
                 editMorRate.setText("");
+                ultimo=0;
+                if (tieneMatriz==1&&nuevorango<=matrizInicial.getnColumnas())
+                {
+                    editNumAnim.setText(String.valueOf((int)matrizInicial.getData(0,nuevorango-1)));
+                    editNatRate.setText(String.valueOf(matrizInicial.getData(1,nuevorango-1)));
+                    editMorRate.setText(String.valueOf(matrizInicial.getData(2,nuevorango-1)));
+                }
                 matriz.show();
                 if (nuevorango==nRangos)
                 {
@@ -75,10 +97,35 @@ public class RatesActivity extends AppCompatActivity {
                     intent.putExtra("respuesta",matriz.getnAnimales());
                     intent.putExtra("ultimo",E.toString2());
                     intent.putExtra("matrizinicial",matrizInicial);
+                    intent.putExtra("tipo","cualquiera");
                     startActivity(intent);
             }
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        if (ultimo == 1) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }
+        else{
+            Integer rangoActual=Integer.parseInt(txtActRange.getText().toString());
+            if (rangoActual>0)
+            {
+                rangoActual--;
+                editNumAnim.setText(String.valueOf((int)matriz.getData(0,rangoActual-1)));
+                editNatRate.setText(String.valueOf(matriz.getData(1,rangoActual-1)));
+                editMorRate.setText(String.valueOf(matriz.getData(2,rangoActual-1)));
+                txtActRange.setText(String.valueOf(rangoActual));
+                ultimo=0;
+                if (rangoActual==1)
+                {
+                    ultimo=1;
+                }
+        }
+
+        }
     }
 }
